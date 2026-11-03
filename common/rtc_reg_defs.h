@@ -25,7 +25,7 @@
 #define RTC_REG_ALARM_SEC  0x20u
 #define RTC_REG_ALARM_MIN  0x24u
 #define RTC_REG_ALARM_HOUR 0x28u
-#define RTC_REG_ALARM_MASK 0x2Cu
+#define RTC_REG_ALARM_MASK 0x2Cu   /* 单组闹钟：匹配掩码 */
 #define RTC_REG_IRQ_STAT   0x30u   /* 写1清除 */
 #define RTC_REG_IRQ_EN     0x34u
 
@@ -40,6 +40,13 @@
 #define RTC_CTRL_EN        (1u << 0)
 #define RTC_CTRL_CLKSEL    (1u << 1)
 #define RTC_CTRL_SWRST     (1u << 2)
+#define RTC_CTRL_ALARM_EN  (1u << 3)   /* 1=允许闹钟比较并置 ALARM 标志 */
+
+/* ---- ALARM_MASK 位域（bit=1 忽略该字段，不参与匹配；全0=时分秒全比）---- */
+#define RTC_ALARM_MASK_IGN_SEC   (1u << 0)
+#define RTC_ALARM_MASK_IGN_MIN   (1u << 1)
+#define RTC_ALARM_MASK_IGN_HOUR  (1u << 2)
+#define RTC_ALARM_MASK_IGN_ALL   0x7u
 
 /* ---- IRQ_STAT / IRQ_EN 共用位域 ---- */
 #define RTC_IRQ_SEC        (1u << 0)
